@@ -13,17 +13,17 @@
  
  
 <!-- ----------------------------------TABLE RENDERING---------------------------------- -->
-<table class = 'table table-hover'>
+<!-- <table class = 'table table-hover'>
     <thead>
         <th>Name</th>
         <th>Price</th>
-    </thead>
+    </thead> -->
  
   <!-- ngFor is basically the for loop in Angular -->
-    <tbody *ngFor = 'let item of fruits'>
+    <!-- <tbody *ngFor = 'let item of fruits'> -->
  
         <!-- ngIf is if statement -->
-        <tr *ngIf = 'item.price>100'>
+        <!-- <tr *ngIf = 'item.price>100'>
             <td>{{item.name}}</td>
             <td>{{item.price}}</td>
         </tr>
@@ -32,7 +32,7 @@
  
 </table>
  
-<br><br><br><br><br>
+<br><br><br><br><br> -->
  
  
  
@@ -56,7 +56,7 @@
  
  
 <!-- ----------------------------------TEMPLATE DRIVEN FORMS---------------------------------- -->
-<div style="text-align: center;">
+<!-- <div style="text-align: center;">
     <h3>Template Driven Forms</h3>
     <form #myForm = "ngForm" (ngSubmit) = "myForm.valid && onSubmit()">
         <label for = 'firstName'>First Name : </label>
@@ -77,11 +77,11 @@
 </div>
  
  
-<br><br><br><br><br>
+<br><br><br><br><br> -->
  
 <!-- ----------------------------------REACTIVE FORMS---------------------------------- -->
  
-<h3>Reactive Forms</h3>
+<!-- <h3>Reactive Forms</h3>
 <div class = "container-fluid">
     <form [formGroup] = "registrationForm" (ngSubmit) = "onSubmit()">
  
@@ -113,4 +113,23 @@
             <button type = "submit" class = "btn btn-primary">Submit</button>
         </div>
     </form>
-</div>
+</div> -->
+
+<div style="text-align: center;">
+<form [formGroup]="registration" (ngSubmit)="onSubmit(registration)">
+  <label>Email</label>
+  <input type="text" class="form-control" formControlName = "email">
+  <br>
+  <div>
+    <button type="button" class="btn btn-success" (click)="addAlternativeEmail()">Add</button>
+  </div>
+  <br>
+  <div formArrayName="addAlternativeEmails" *ngFor="let item of  alternativeEmails.controls; let i =index">
+    <label>Alternative Email{{i+1}}</label>
+    <input type="text" [formControlName]="i" class="form-control">
+    </div>
+    <br>
+    <div>
+      <button type="Submit" class="btn btn-primary">Submit</button>
+    </div>
+</form></div>
