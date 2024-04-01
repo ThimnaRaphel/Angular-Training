@@ -10,15 +10,39 @@
 
 <br>
 
-<table class="table table-hover">
+<table class="table table-striped">
   <thead>
-    <th>Name</th>
-    <th>Price</th>
+    <th>userId</th>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Body</th>
   </thead>
-  <tbody *ngFor="let item of fruits">
-    <tr *ngIf = "item.price < 100">
-      <td>{{item.name}}</td>
-      <td>{{item.price}}</td>
+  <tbody *ngFor="let item of data">
+    <tr >
+      <td>{{item.userId}}</td>
+      <td>{{item.id}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.body}}</td>
     </tr>
   </tbody>
 </table>
+
+<div style="text-align: center;">
+  <h3>Template Forms</h3>
+  <form #myForm = "ngForm" (ngSubmit) = "myForm.valid && onSubmit()">
+    <label for = 'firstName'>First Name : </label>
+    <input type = 'text' id = 'firstName' name = 'firstName' [(ngModel)] = 'user.firstName' required class = 'form-control' #firstName = 'ngModel'>
+    <label class = 'text-danger' *ngIf = "myForm.submitted && firstName.hasError('required')">
+        First Name is required
+    </label>
+    <br>
+    <label for = 'Last Name : '>Last Name: </label>
+    <input type = 'text' id = 'lastName' name = 'lastName' [(ngModel)] = "user.lastName" required class = 'form-control' #lastName = 'ngModel'>
+    <label class = 'text-danger' *ngIf = "myForm.submitted && firstName.hasError('required')">
+        Last Name is required
+    </label>
+    <div>
+        <button type = 'submit' class = 'btn btn-primary'>Submit</button>
+    </div>
+</form>
+</div>
